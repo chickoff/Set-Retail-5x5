@@ -1,0 +1,67 @@
+﻿<UserControl x:Class="Set_Retail_5x5.Retail5x5.Gui.Cards.View.TabView.CardsBonusDetailTabItemView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Set_Retail_5x5.Retail5x5.Gui.Cards.View.TabView"
+             xmlns:tabViewModel="clr-namespace:Set_Retail_5x5.Retail5x5.Gui.Cards.ViewModel.TabViewModel"
+             xmlns:converters="clr-namespace:Set_Retail_5x5.Retail5x5.Gui.Cards.View.Converters"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="695"
+             Language="ru-RU"
+             >
+    <d:UserControl.DataContext>
+        <tabViewModel:CardsBonusDetailTabItemViewModel/>
+    </d:UserControl.DataContext>
+    
+    <UserControl.Resources>
+        <Style x:Key="DataGridDefCellStyle" TargetType="DataGridCell">
+            <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Key="DataGridBoldCellStyle" TargetType="DataGridCell" BasedOn="{StaticResource DataGridDefCellStyle}">
+            <Setter Property="TextBlock.FontSize" Value="14"/>
+            <Setter Property="TextBlock.FontWeight" Value="Bold"></Setter>
+        </Style>
+
+        <converters:TypeDetailOperationConverter x:Key="TypeDetailOperationConvert"/>
+        <converters:MoneyDetailConverter x:Key="MoneyDetailConvert"/>
+
+    </UserControl.Resources>
+
+    <Grid>
+        <StackPanel>
+            <Grid Height="10"/>
+            <WrapPanel VerticalAlignment="Center">
+                <Grid Width="10"></Grid>
+                <TextBlock Text="Период с" VerticalAlignment="Center"/>
+                <Grid Width="10"></Grid>
+                <DatePicker SelectedDate="{Binding Path = BeginDate}"></DatePicker>
+                <Grid Width="20"></Grid>
+                <TextBlock Text="по" VerticalAlignment="Center"/>
+                <Grid Width="20"></Grid>
+                <DatePicker SelectedDate="{Binding Path = EndDate}"></DatePicker>
+                <Grid Width="20"></Grid>
+                <Button Width="50" Command="{Binding Path=OkCommand}">Ок</Button>
+            </WrapPanel>
+            <Grid Height="10"/>
+        </StackPanel>
+        <DataGrid x:Name="dataGrid" Margin="0,55,0,0" ItemsSource="{Binding Path=Trans}"
+                  AutoGenerateColumns="False"
+                  CanUserAddRows="False"
+                  CanUserDeleteRows="False"
+                  IsReadOnly="True"
+                  >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Номер магазина" Binding ="{Binding Path=Shopnum}" CellStyle="{StaticResource DataGridDefCellStyle}"/>
+                <DataGridTextColumn Header="Дата операции" Binding ="{Binding Path=Operationdate, StringFormat=\{0 : dd MMMM yyyy \}}" SortDirection="Descending" CellStyle="{StaticResource DataGridDefCellStyle}"/>
+                <DataGridTextColumn Header="Время операции" Binding ="{Binding Path=Operationdate, StringFormat=\{0 : H:mm:ss \}}" CellStyle="{StaticResource DataGridDefCellStyle}"/>
+                <DataGridTextColumn Header="Номер смены" Binding ="{Binding Path=Shiftnum}" CellStyle="{StaticResource DataGridDefCellStyle}"/>
+                <DataGridTextColumn Header="Номер кассы" Binding ="{Binding Path=Cashnum}" CellStyle="{StaticResource DataGridDefCellStyle}"/>
+                <DataGridTextColumn Header="Номер чека" Binding ="{Binding Path=Checknum}" CellStyle="{StaticResource DataGridDefCellStyle}"/>
+                <DataGridTextColumn Header="Тип операции" Binding ="{Binding Path=Transactiontype, Converter={StaticResource TypeDetailOperationConvert}}" CellStyle="{StaticResource DataGridDefCellStyle}"/>
+                <DataGridTextColumn Header="Сумма к начислению"  Binding ="{Binding Path=Receiptsum, Converter={StaticResource MoneyDetailConvert}}" CellStyle="{StaticResource DataGridBoldCellStyle}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>

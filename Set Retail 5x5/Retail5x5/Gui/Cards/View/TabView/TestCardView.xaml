@@ -1,0 +1,51 @@
+﻿<UserControl x:Class="Set_Retail_5x5.Retail5x5.Gui.Cards.View.TabView.TestCardView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:tabViewModel="clr-namespace:Set_Retail_5x5.Retail5x5.Gui.Cards.ViewModel.TabViewModel"
+             xmlns:local="clr-namespace:Set_Retail_5x5.Retail5x5.Gui.Cards.View.TabView"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="500">
+
+    <d:UserControl.DataContext>
+        <tabViewModel:TestCardViewModel />
+    </d:UserControl.DataContext>
+    <Grid>
+        <StackPanel>
+            <StackPanel>
+                <Grid Height="20"/>
+                <Grid Margin="10">
+                    <TextBlock Text="Фамилия" FontSize="16" Margin="0,0,245,0"/>
+                    <TextBox MinWidth="50" Margin="155,0,0,0" Text="{Binding Path = ClientInfo.LastName}" FontSize="16" IsReadOnly="True"/>
+                </Grid>
+
+                <Grid  Margin="10">
+                    <TextBlock Text="Имя" FontSize="16" Margin="0,0,245,0"/>
+                    <TextBox MinWidth="50" Margin="155,0,0,0" Text="{Binding Path = ClientInfo.FirstName}" FontSize="16" IsReadOnly="True"/>
+                </Grid>
+
+                <Grid  Margin="10">
+                    <TextBlock Text="Отчество" FontSize="16" Margin="0,0,245,0"/>
+                    <TextBox MinWidth="50" Margin="155,0,0,0" Text="{Binding Path = ClientInfo.MiddleName}" FontSize="16" IsReadOnly="True"/>
+                </Grid>
+
+                <Grid  Margin="10">
+                    <TextBlock Text="Телефон" FontSize="16" Margin="0,0,245,0"/>
+                    <TextBox MinWidth="50" Margin="155,0,0,0" Text="{Binding Path = ClientInfo.MobilePhone}" FontSize="16" IsReadOnly="True"/>
+                </Grid>
+
+                <Grid  Margin="10">
+                    <TextBlock Text="E-mail" FontSize="16" Margin="0,0,245,0"/>
+                    <TextBox MinWidth="50" Margin="155,0,0,0" Text="{Binding Path = ClientInfo.EMail}" FontSize="16" IsReadOnly="True"/>
+                </Grid>
+
+                <Grid  Margin="10">
+                    <TextBlock Text="Дата рождения" FontSize="16" VerticalAlignment ="Center" Margin="0,4,245,4"/>
+                    <TextBox MinWidth="50" Margin="155,0,0,0" Text="{Binding Path = ClientInfo.BirthDate}" FontSize="16" IsReadOnly="True"/>
+                </Grid>
+            </StackPanel>
+            <Button Height="35" Command="{Binding ScanCardsCommand}"  Margin="5,0,5,5"/>
+        </StackPanel>            
+    </Grid>
+</UserControl>

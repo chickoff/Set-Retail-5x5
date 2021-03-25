@@ -1,0 +1,10 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:viewModel="clr-namespace:Set_Retail_5x5.Retail5x5.Gui.Cards.ViewModel"
+                  
+                    xmlns:tabViewModel="clr-namespace:Set_Retail_5x5.Retail5x5.Gui.Cards.ViewModel.TabViewModel"
+                    xmlns:tabView="clr-namespace:Set_Retail_5x5.Retail5x5.Gui.Cards.View.TabView">
+    <DataTemplate DataType="{x:Type tabViewModel:FindClientTabItemViewModel}">
+        <tabView:FindClientTabItemView/>
+    </DataTemplate>
+</ResourceDictionary>

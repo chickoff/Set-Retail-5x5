@@ -1,0 +1,40 @@
+﻿<UserControl x:Class="Set_Retail_5x5.Retail5x5.Gui.Cards.View.TabView.CardSingleOperationTabItemView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Set_Retail_5x5.Retail5x5.Gui.Cards.View.TabView"
+             xmlns:tabViewModel="clr-namespace:Set_Retail_5x5.Retail5x5.Gui.Cards.ViewModel.TabViewModel"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="500"
+             FontSize="20"
+             >
+    <d:UserControl.DataContext>
+        <tabViewModel:AddNewCardTabItemViewModel></tabViewModel:AddNewCardTabItemViewModel>
+    </d:UserControl.DataContext>
+    <Grid>
+        <StackPanel>
+            <Grid Height="20"></Grid>
+                <Grid>
+                <Border BorderThickness="1">
+                    <WrapPanel>
+                        <Label Content="Номер карты" ></Label>
+                        <Grid Width="10"/>
+                        <TextBox IsReadOnly="{Binding Path=IsReadOnly, Mode=TwoWay}" VerticalAlignment="Center" MinWidth="140">
+                            <TextBox.Text>
+                                <Binding Path="CardNumber" UpdateSourceTrigger="PropertyChanged">
+                                    <Binding.ValidationRules>
+                                        <ExceptionValidationRule/>
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                        <Grid Width="10"/>
+                        <Button Content="{Binding Path = NameOfButton}" Command="{Binding Path=AddNewCardCommand }"/>
+                    </WrapPanel>
+                </Border>
+            </Grid>
+        </StackPanel>
+
+    </Grid>
+</UserControl>
